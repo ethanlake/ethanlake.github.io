@@ -139,7 +139,7 @@ h2 {
 h3 {
 	font-size:22px;
     margin-bottom:10px;
-    text-align:center
+    /* text-align:center */
 }
 
 h4 {
@@ -323,11 +323,17 @@ h6 {
 }
 
 .intro a{
-    color:#2307a0;
+    color:#03314b;
+	text-decoration: underline;
+}
+
+.intro a:hover{
+	color:var(--linkHoverColor);
+	text-decoration:underline;
 }
 
 .intro ul li a{
-    color:#2307a0;
+    color:#03314b;
 }
 
 .links{
@@ -417,6 +423,45 @@ IMG.displayed {
     margin-left: auto;
     margin-right: auto 
 }
+
+ .paper {
+    margin-bottom: 20px;
+  }
+  .paper h3 {
+	color: #1a5f87; 
+    font-weight: bold;
+  }
+  .paper a {
+    color: #03314b; 
+    text-decoration: none; /* Remove underline from links */
+  }
+  .paper a:hover {
+    color: var(--linkHoverColor); /* Change color on hover */
+    text-decoration: underline; /* Underline text on hover */
+  }
+  .paper .authors {
+    display: block; /* Display authors on a new line */
+    font-style: italic; /* Italicize authors */
+	margin-bottom: 8px; /* Add margin below authors */
+  }
+  .paper .journal {
+    display: block; /* Display journal details on a new line */
+    font-style: normal; /* Make journal details non-italic */
+	margin-bottom: 16px; /* Add margin below authors */
+  }
+  .paper .journal a {
+	font-weight: bold;
+	}	
+
+  .paper .arxiv {
+    display: block; /* Display journal details on a new line */
+    font-style: normal; /* Make journal details non-italic */
+	font-weight: bold;
+	margin-bottom: 25px; /* Add margin below authors */
+  }
+  /* .paper .arxiv::before {
+    content: url('arxiv-logo-small.png'); /* Replace 'your-image-url.png' with the URL of your image */
+    /* margin-right: 5px; /* Add some space between the image and text */
 
 /*----end page content----*/
 
