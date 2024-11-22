@@ -121,7 +121,9 @@ body {
 	color:var(--textColor);
 	background-color:#FFFFFF;
     /* font-family:Georgia, "Times New Roman", Times, serif; */
-    font-family: 'Latin Modern Roman', serif;
+/*     font-family: 'Latin Modern Roman', serif; */
+    font-family: "Baskerville", "Georgia", serif;
+
 
 }
 
@@ -226,7 +228,9 @@ h6 {
     margin:5px;
     padding: 10px;
     /* font-family: 'Noto Sans KR', sans-serif; */
-    font-family: 'Latin Modern Roman', sans-serif;
+/*     font-family: 'Latin Modern Roman', sans-serif; */
+    font-family: "Baskerville", serif; /* Explicitly set to Baskerville */
+
     /* font-family: "Computer Modern", sans-serif; */
     font-size: 45px;
     padding:10px 5px 5px;
