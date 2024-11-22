@@ -189,7 +189,6 @@ h6 {
 	font-size:16px;
 	margin-left:1px;
 	color:#000000;
-    /* font-family: 'Latin Modern Roman', serif; */
 
 }
 
@@ -404,43 +403,8 @@ IMG.displayed {
 	}	
 
   .paper .arxiv {
-    display: block; /* Display journal details on a new line */
-    font-style: normal; /* Make journal details non-italic */
+    display: block; 
+    font-style: normal; 
 	font-weight: normal;
-	margin-bottom: 25px; /* Add margin below authors */
+	margin-bottom: 25px; 
   }
-
-/*----end page content----*/
-
-
-/*----start footer content----*/
-#footer{
-	clear:both;
-	margin-top:18px;
-	padding:15px 0 12px 0;
-	height:25px;
-	text-align:center;
-    /* font-family:Verdana, Geneva, sans-serif; */
-    /* font-family: 'Latin Modern Roman', serif; */
- 
-	font-size:12px;
-	line-height:19px;
-	border-top:#b9bdbe solid 1px;
-}
-
-#footer a{
-	color: #1B5219;
-	text-decoration:none;
-}
-
-#footer a:hover{
-	color: #1B5219;
-	text-decoration:underline;
-}
-
-/*----end footer content----*/
-
-
-
-
-
