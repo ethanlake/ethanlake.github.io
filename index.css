@@ -370,39 +370,41 @@ IMG.displayed {
     margin-right: auto 
 }
 
+/* settings for papers page */
+
  .paper {
     margin-bottom: 20px;
   }
   .paper h3 {
 	color: #1a5f87; 
-    font-weight: bold;
+    font-weight: normal;
   }
   .paper a {
     color: #03314b; 
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none; 
   }
   .paper a:hover {
-    color: var(--linkHoverColor); /* Change color on hover */
-    text-decoration: underline; /* Underline text on hover */
+    color: var(--linkHoverColor);
+    text-decoration: underline; 
   }
   .paper .authors {
-    display: block; /* Display authors on a new line */
-    font-style: italic; /* Italicize authors */
-	margin-bottom: 8px; /* Add margin below authors */
+    display: block; 
+    font-style: normal; 
+	margin-bottom: 8px; 
   }
   .paper .journal {
-    display: block; /* Display journal details on a new line */
-    font-style: normal; /* Make journal details non-italic */
-	margin-bottom: 16px; /* Add margin below authors */
+    display: block; 
+    font-style: normal;
+	margin-bottom: 16px; 
   }
   .paper .journal a {
-	font-weight: bold;
+	font-weight: normal;
 	}	
 
   .paper .arxiv {
     display: block; /* Display journal details on a new line */
     font-style: normal; /* Make journal details non-italic */
-	font-weight: bold;
+	font-weight: normal;
 	margin-bottom: 25px; /* Add margin below authors */
   }
 
@@ -417,7 +419,7 @@ IMG.displayed {
 	height:25px;
 	text-align:center;
     /* font-family:Verdana, Geneva, sans-serif; */
-    font-family: 'Latin Modern Roman', serif;
+    /* font-family: 'Latin Modern Roman', serif; */
  
 	font-size:12px;
 	line-height:19px;
@@ -435,3 +437,8 @@ IMG.displayed {
 }
 
 /*----end footer content----*/
+
+
+
+
+
