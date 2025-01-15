@@ -7,4 +7,7 @@ title: "Test Blog Post"
 
 - blah $\int dx = \pi$ 
 - blah x2 
+- another line 
+
+[link](https://ethanlake.github.io/blogs/blog_test)
 
