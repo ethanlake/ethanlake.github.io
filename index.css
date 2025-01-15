@@ -11,13 +11,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 :root {
     --titleColor: #113e5d;
-    --titleColor:black;
+    --titleColor:#333;
   
-    --subtitleColor: black;
+    --subtitleColor: #333;
       
     --textColor:#113e5d;
-    --textColor: rgb(121, 0, 0);
-    --textColor:rgb(0, 0, 0);
+    --textColor:#333;
 
     --textBorderColor: rgb(255, 255, 255);
     --textBackgroundColor: rgb(255, 255, 255);
