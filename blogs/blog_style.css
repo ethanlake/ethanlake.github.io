@@ -1,0 +1,95 @@
+/* styles.css */
+body {
+    font-family: "Baskerville", "Georgia", serif;
+    color: #333; /* Default text color */
+    background-color: #ffffff; /* Light background */
+    margin: 0;
+    padding: 0;
+    font-size:18px; 
+	line-height:28px;
+
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: #013c5e; /* Header color */
+	font-weight:normal;
+}
+
+a {
+    color: #7700b3; /* Link color */
+    text-decoration: none;
+}
+
+/* a:hover {
+    text-decoration: underline;
+} */
+
+h1 {
+	font-size:39px;
+	margin-bottom:10px;
+}
+
+h2 {
+    font-size:27px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+h3 {
+	font-size:22px;
+    margin-bottom:10px;
+    /* text-align:center */
+}
+
+h4 {
+	font-size:16px;
+	margin-bottom:10px;
+}
+
+h5 {
+	font-size:14px;
+	margin-bottom:10px;
+}
+
+h6 {
+	font-size:12px;
+	margin-bottom:10px;
+}
+
+	sup, sub {vertical-align: baseline;position: relative;top: -0.4em;}
+	sub { top: 0.4em; }
+	
+	ul, ol {padding:0;margin:0;}
+	ul li {list-style-type:disc;}
+	ol li {list-style-type:decimal;}
+	ul li,
+	ol li {font-size: 19px; line-height: 20px;margin: 0 0 10px 15px;}
+
+    hr {border-bottom: 1px solid #C1C1CB;margin:5px 0;padding:0;height:2px;width:100%; margin-bottom:15px;}
+
+
+.back-to-home {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #ffffff;
+    color: #3498db;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+}
+
+.back-to-home:hover {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.content {
+    max-width: 800px;
+    margin: 50px auto; /* Center content */
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
