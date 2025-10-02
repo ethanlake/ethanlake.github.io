@@ -271,11 +271,12 @@ h6 {
 .intro-content {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 18px;
 }
 
 .intro-text {
     flex: 0 0 60%;
+    margin-left: 40px;
 }
 
 .intro-image {
@@ -286,6 +287,8 @@ h6 {
 .headshot {
     max-width: 100%;
     height: auto;
+    max-height: 150px;
+    width: auto;
     border-radius: 8px;
 }
 
