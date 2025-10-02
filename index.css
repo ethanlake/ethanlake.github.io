@@ -268,6 +268,27 @@ h6 {
     font-size:21px;
 }
 
+.intro-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.intro-text {
+    flex: 0 0 60%;
+}
+
+.intro-image {
+    flex: 0 0 40%;
+    text-align: center;
+}
+
+.headshot {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
 .intro a{
     color:#03314b;
 	text-decoration: underline;
