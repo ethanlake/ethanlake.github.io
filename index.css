@@ -30,8 +30,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     --titleBackgroundColor: white;
     --titleStripeColor: rgb(129, 129, 129);
   
-    --linkColor:rgb(0, 0, 0);
-    --linkColor: rgb(1, 0, 65);
+    --linkColor: #03314b;
     
     /* --linkColor:#113e5d;
     --linkColor:black; */
@@ -293,8 +292,8 @@ h6 {
 }
 
 .intro a{
-    color:#03314b;
-	text-decoration: underline;
+    color:#1a5f87;
+	text-decoration: none;
 }
 
 .intro a:hover{
@@ -400,8 +399,9 @@ IMG.displayed {
     margin-bottom: 20px;
   }
   .paper h3 {
-	color: #1a5f87; 
+	color: var(--textColor); 
     font-weight: normal;
+    font-style: italic;
   }
   .paper a {
     color: #03314b; 
@@ -414,7 +414,11 @@ IMG.displayed {
   .paper .authors {
     display: block; 
     font-style: normal; 
-	margin-bottom: 8px; 
+	margin-bottom: 8px;
+	color: var(--textColor);
+  }
+  .paper .authors a {
+	color: #1a5f87;
   }
   .paper .journal {
     display: block; 
@@ -423,6 +427,7 @@ IMG.displayed {
   }
   .paper .journal a {
 	font-weight: normal;
+	color: #1a5f87;
 	}	
 
   .paper .arxiv {
