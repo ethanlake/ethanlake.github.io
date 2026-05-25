@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics of Learning Journal Club</title>
+<link href="index.css" rel="stylesheet" type="text/css">
+<style>
+  /* Override the site default of .top_banner { height:50px } (tuned for a
+     short one-line title) so the longer title fits cleanly on one line. */
+  #header {
+    padding: 30px 40px 10px;
+  }
+  #header .top_banner {
+    height: auto;
+    padding: 10px 10px 5px;
+  }
+  #header h1 {
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  @media (max-width: 768px) {
+    #header h1 { white-space: normal; }
+  }
+  #header .top_banner hr {
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  #page_content .intro {
+    margin-top: 10px;
+    font-size: 24px;
+    line-height: 1.4;
+  }
+  #page_content .intro p {
+    margin-bottom: 0;
+  }
+  #page_content .intro p + p {
+    margin-top: 14px;  /* \medskip-ish gap */
+  }
+
+  .jc-wrap {
+    /* Symmetric horizontal margins so the wrap's center coincides
+       with the wrapper's (and hence the title's) center. */
+    padding: 0;
+    margin: 0 20px;
+  }
+
+  .jc-table {
+    border-collapse: collapse;
+    margin: 40px auto 50px;
+    width: 100%;
+    table-layout: fixed;  /* honor the <colgroup> widths below */
+    font-family: "Baskerville", "Georgia", serif;
+    color: var(--textColor);
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .jc-table thead tr {
+    border-top: 1.5px solid #333;
+    border-bottom: 0.75px solid #888;
+  }
+
+  .jc-table tbody tr:last-child {
+    border-bottom: 1.5px solid #333;
+  }
+
+  .jc-table tbody tr {
+    border-bottom: 1px solid #eee;
+  }
+
+  .jc-table th {
+    text-align: left;
+    font-weight: normal;
+    font-size: 23px;
+    letter-spacing: 0.02em;
+    padding: 12px 18px 10px;
+    color: var(--titleColor);
+  }
+
+  .jc-table td {
+    vertical-align: top;
+    padding: 10px 18px;
+  }
+
+  .jc-table td.date {
+    white-space: nowrap;
+    color: #555;
+  }
+
+  .jc-table td.topic {
+    font-style: italic;
+  }
+
+  .jc-table td.links a {
+    color: var(--linkColor);
+    text-decoration: none;
+  }
+
+  .jc-table td.links a:hover {
+    color: var(--linkHoverColor);
+    text-decoration: underline;
+  }
+
+  .jc-table td.links .sep {
+    color: #aaa;
+    margin: 0 4px;
+  }
+
+  @media (max-width: 768px) {
+    #page_content .intro { font-size: 18px; }
+
+    .jc-wrap { margin: 0; }
+
+    .jc-table,
+    .jc-table thead,
+    .jc-table tbody,
+    .jc-table tr,
+    .jc-table th,
+    .jc-table td { display: block; width: 100%; box-sizing: border-box; }
+
+    .jc-table { margin: 20px auto 30px; font-size: 18px; }
+    .jc-table thead { display: none; }
+
+    .jc-table tbody tr {
+      border-top: 1px solid #ccc;
+      border-bottom: none;
+      padding: 12px 4px;
+    }
+    .jc-table tbody tr:last-child { border-bottom: 1px solid #ccc; }
+
+    .jc-table td { padding: 4px 0; font-size: 17px; }
+    .jc-table td.date    { font-weight: 600; color: #333; }
+    .jc-table td.speaker::before { content: "Speaker: "; color: #888; }
+    .jc-table td.topic::before   { content: "Topic: ";   color: #888; font-style: normal; }
+    .jc-table td.links::before   { content: "Links: ";   color: #888; }
+  }
+
+  /* Suggest-a-topic trigger */
+  .suggest-trigger-wrap { text-align: center; margin-top: 10px; }
+  .suggest-trigger {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 18px 0 0;
+    font: inherit;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1a73e8;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .suggest-trigger:hover,
+  .suggest-trigger:focus { color: #7700b3; outline: none; }
+
+  /* Modal */
+  .suggest-modal[hidden] { display: none; }
+  .suggest-modal {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    padding: 16px;
+  }
+  .suggest-modal__card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    padding: 24px 26px 22px;
+    width: 100%;
+    max-width: 440px;
+    font-family: "Baskerville", "Georgia", serif;
+    color: var(--textColor);
+    position: relative;
+  }
+  .suggest-modal__title {
+    font-size: 24px;
+    margin: 0 0 16px;
+    color: var(--titleColor);
+  }
+  .suggest-modal__close {
+    position: absolute; top: 8px; right: 12px;
+    background: none; border: none;
+    font-size: 24px; line-height: 1;
+    color: #888; cursor: pointer;
+  }
+  .suggest-modal__close:hover { color: #333; }
+  .suggest-modal label {
+    display: block;
+    font-size: 16px;
+    margin: 10px 0 4px;
+    color: #444;
+  }
+  .suggest-modal input[type="text"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 16px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+  }
+  .suggest-modal input[type="text"]:focus {
+    outline: none; border-color: #1a73e8;
+  }
+  .suggest-modal__submit {
+    margin-top: 16px;
+    padding: 9px 18px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: #1a73e8;
+    border: none; border-radius: 6px;
+    cursor: pointer;
+  }
+  .suggest-modal__submit:hover { background: #155bb5; }
+  .suggest-modal__hint {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #888;
+  }
+
+  @media (max-width: 768px) {
+    .suggest-trigger { font-size: 19px; }
+    .suggest-modal__card { padding: 20px 18px 18px; }
+    .suggest-modal__title { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+
+  <div id="header">
+    <div class="top_banner">
+      <h1 style="text-align:center">Physics of Learning Journal Club</h1>
+      <br>
+      <hr>
+    </div>
+  </div>
+
+  <div id="page_content">
+    <div class="intro">
+      <p>
+        An informal meetup at Berkeley focused on the physics of learning, broadly construed. The schedule of past and upcoming talks is below.
+      </p>
+      <p>
+        All meetings held on <b>Wednesdays at 3pm</b> in the Interaction area on the
+        <b>5th floor of Birge Hall</b>, unless noted otherwise.
+      </p>
+      <div class="suggest-trigger-wrap">
+        <button type="button" class="suggest-trigger" id="suggestTriggerBtn">
+          Suggest a topic!
+        </button>
+      </div>
+    </div>
+
+    <div class="jc-wrap">
+      <table class="jc-table">
+        <colgroup>
+          <col style="width: 14%">
+          <col style="width: 28%">
+          <col style="width: 41%">
+          <col style="width: 17%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Speaker(s)</th>
+            <th>Topic</th>
+            <th>Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="date">05/27/26</td>
+            <td class="speaker">Nathaniel Selub (UCB Physics)</td>
+            <td class="topic">Understanding deep learning optimizers</td>
+            <td class="links">
+              <a href="#"></a>
+            </td>
+          </tr>
+          <tr>
+            <td class="date">05/20/26</td>
+            <td class="speaker">Daniel Kunin (UCB Neuro+Stats) & Dhruva Karkada (UCB Physics)</td>
+            <td class="topic">There will be a scientific theory of deep learning</td>
+            <td class="links">
+              <a href="https://arxiv.org/abs/2604.21691">overview paper</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+<div class="suggest-modal" id="suggestModal" hidden role="dialog" aria-modal="true" aria-labelledby="suggestModalTitle">
+  <div class="suggest-modal__card">
+    <button type="button" class="suggest-modal__close" id="suggestModalClose" aria-label="Close">&times;</button>
+    <h2 class="suggest-modal__title" id="suggestModalTitle">Suggest a topic</h2>
+    <form id="suggestForm">
+      <input type="hidden" name="access_key" value="8e2e196b-39bb-4e45-8948-0a231cef4178">
+      <input type="hidden" name="subject" value="POL JC topic suggestion">
+      <input type="hidden" name="from_name" value="POL JC site">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+      <label for="suggestTopic">Proposed topic:</label>
+      <input type="text" id="suggestTopic" name="topic" required>
+
+      <label for="suggestSpeaker">Proposed speaker (optional):</label>
+      <input type="text" id="suggestSpeaker" name="speaker">
+
+      <label for="suggestContact">Your name / email (optional):</label>
+      <input type="text" id="suggestContact" name="contact">
+
+      <button type="submit" class="suggest-modal__submit" id="suggestSubmitBtn">Submit</button>
+      <p class="suggest-modal__hint" id="suggestHint">Submissions will be emailed to the organizers.</p>
+    </form>
+  </div>
+</div>
+
+<br>
+<script>
+(function () {
+  var trigger    = document.getElementById('suggestTriggerBtn');
+  var modal      = document.getElementById('suggestModal');
+  var closeBtn   = document.getElementById('suggestModalClose');
+  var form       = document.getElementById('suggestForm');
+  var topicInput = document.getElementById('suggestTopic');
+
+  function openModal() {
+    modal.hidden = false;
+    setTimeout(function () { topicInput.focus(); }, 0);
+  }
+  function closeModal() {
+    modal.hidden = true;
+    trigger.focus();
+  }
+
+  trigger.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!modal.hidden && e.key === 'Escape') closeModal();
+  });
+
+  var submitBtn = document.getElementById('suggestSubmitBtn');
+  var hint      = document.getElementById('suggestHint');
+  var defaultHintText = hint.textContent;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    hint.style.color = '#888';
+    hint.textContent = '';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      if (data && data.success) {
+        hint.style.color = '#1a7d3a';
+        hint.textContent = 'Thanks! Your suggestion was sent.';
+        form.reset();
+        setTimeout(function () {
+          closeModal();
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+          hint.style.color = '#888';
+          hint.textContent = defaultHintText;
+        }, 1800);
+      } else {
+        throw new Error((data && data.message) || 'Submission failed');
+      }
+    }).catch(function (err) {
+      hint.style.color = '#b00020';
+      hint.textContent = 'Sorry, something went wrong. Please email elake@berkeley.edu directly.';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    });
+  });
+})();
+</script>
+</body>
+</html>

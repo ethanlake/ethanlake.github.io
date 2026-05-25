@@ -431,8 +431,41 @@ IMG.displayed {
 	}	
 
   .paper .arxiv {
-    display: block; 
-    font-style: normal; 
+    display: block;
+    font-style: normal;
 	font-weight: normal;
-	margin-bottom: 25px; 
+	margin-bottom: 25px;
   }
+
+/* Keep content images from overflowing narrow viewports.
+   Inline WIDTH=NNN attrs set the rendered size but CSS wins. */
+#page_content img,
+.intro img,
+.art_content img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  #wrapper { width: auto; max-width: 100%; padding: 0 12px; box-sizing: border-box; }
+
+  #header { padding: 20px 0 10px; }
+  #header h1 { font-size: 30px; padding: 6px; }
+  #header .top_banner { padding: 5px 0; }
+
+  .navigation { margin: 0; padding: 10px 5px; }
+  .navigation ul li { display: inline-block; padding: 4px 10px; font-size: 18px; }
+
+  .intro { margin: 0; padding: 5px 8px; font-size: 18px; }
+  .intro-content { flex-direction: column; align-items: center; gap: 12px; }
+  .intro-text { flex: 1 1 auto; margin-left: 0; }
+  .intro-image { flex: 1 1 auto; }
+  .headshot { max-height: 180px; }
+
+  .links { margin: 0; padding: 5px 8px; font-size: 18px; }
+  .art_content { padding: 0 8px; position: static; font-size: 18px; }
+
+  ul li, ol li { font-size: 17px; line-height: 1.4; margin: 0 0 10px 18px; }
+
+  h2 { font-size: 23px; }
+}
